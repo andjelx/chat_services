@@ -5,3 +5,5 @@ oracle_java_home: "/usr/lib/jvm/java-{{ oracle_java_version }}-oracle"
 oracle_java_os_supported: yes
 oracle_java_state: latest
 oracle_java_set_as_default: yes
+
+java_package: "jdk-8u151-linux-x64.tar.gz"
