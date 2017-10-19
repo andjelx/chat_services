@@ -11,8 +11,8 @@
   become: true
   become_user: "{{ app_user }}"
   get_url:
-    url: http://mirror.wanxp.id/apache/activemq/activemq-apollo/1.7.1/apache-apollo-1.7.1-unix-distro.tar.gz
-    #http://apache.mirror.anlx.net/activemq/activemq-apollo/1.7.1/apache-apollo-1.7.1-unix-distro.tar.gz
+    #url: http://mirror.wanxp.id/apache/activemq/activemq-apollo/1.7.1/apache-apollo-1.7.1-unix-distro.tar.gz
+    url: http://apache.mirror.anlx.net/activemq/activemq-apollo/1.7.1/apache-apollo-1.7.1-unix-distro.tar.gz
     dest: /opt/affinitas_chat/tmp/apache-apollo-1.7.1-unix-distro.tar.gz
   tags:
     - download_files
