@@ -7,12 +7,14 @@ appoloPackage="http://apache.mirror.anlx.net/activemq/activemq-apollo/1.7.1/apac
 node {
    stage('Preparation') { 
       git 'https://github.com/andjelx/chat_services.git'
+      dir('message_queue') {
+         sh "curl -q -o jdk-8u151-linux-x64.tar.gz -L ${javaPackage}"
+         sh "curl -q -O -L ${appoloPackage}"
+      }
    }
 
    stage('Build') {
        dir('message_queue') {
-         sh "curl -q -o jdk-8u151-linux-x64.tar.gz -L ${javaPackage}"
-         sh "curl -q -O -L ${appoloPackage}"
          sh "packer build build.json"
          sh "curl ${dockerRepo}; sleep 3" // Hack for repo initialisation
          sh "docker push ${dockerRepo}/${imageName}:latest"
