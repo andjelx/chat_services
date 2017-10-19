@@ -6,6 +6,12 @@
   changed_when: no
   become: true
 
+- name: add PPA webupd8team repo
+  apt_repository:
+    repo: "ppa:webupd8team/java"
+    state: present
+  become: true
+
 - name: ensure Java is installed
   apt:
     name="oracle-java{{ oracle_java_version }}-installer"
