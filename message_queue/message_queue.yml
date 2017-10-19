@@ -20,8 +20,6 @@ spec:
         ports:
         - containerPort: 61613
         - containerPort: 61614
-        - containerPort: 61623
-        - containerPort: 61624
 
 ---
 
