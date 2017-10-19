@@ -1,4 +1,4 @@
-dockeRepo = '127.0.0.1:5001'
+dockerRepo = '127.0.0.1:5001'
 imageName = 'chat_broadcast_sse'
 
 node {
@@ -13,9 +13,9 @@ node {
    stage('Build') {
        dir('chat_broadcast_sse') {
          sh "'${mvnHome}/bin/mvn' clean package"
-         sh "docker build . -t ${imageName} && docker tag ${imageName}:latest ${dockeRepo}/${imageName}:latest"
+         sh "docker build . -t ${imageName} && docker tag ${imageName}:latest ${dockerRepo}/${imageName}:latest"
          sh "curl ${dockerRepo}; delay 1" // Hack for repo initialisation
-         sh "docker push ${dockeRepo}/${imageName}:latest"
+         sh "docker push ${dockerRepo}/${imageName}:latest"
         }
       }
 
