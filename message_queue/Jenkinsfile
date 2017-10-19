@@ -14,10 +14,12 @@ node {
    }
 
    stage('Build') {
+     ansiColor('xterm') {
        dir('message_queue') {
          sh "packer build build.json"
          sh "curl ${dockerRepo}; sleep 3" // Hack for repo initialisation
          sh "docker push ${dockerRepo}/${imageName}:latest"
         }
       }
+  }
 }
