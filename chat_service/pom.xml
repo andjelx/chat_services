@@ -77,6 +77,7 @@
 
    	<properties>
    		<start-class>de.affinitas.chat.service.ChatService</start-class>
+		<docker.image.prefix>affinitas</docker.image.prefix>
    	</properties>
 
    	<build>
@@ -93,6 +94,14 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+			<plugin>
+            <groupId>com.spotify</groupId>
+            <artifactId>chat_service</artifactId>
+            <version>1.0.0</version>
+            <configuration>
+                <repository>${docker.image.prefix}/${project.artifactId}</repository>
+            </configuration>
+        </plugin>
    		</plugins>
    	</build>
 
