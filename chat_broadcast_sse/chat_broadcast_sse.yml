@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: chatbroadcastsse-deployment
+  labels:
+    app: chatbroadcastsse
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chatbroadcastsse
+  template:
+    metadata:
+      labels:
+        app: chatbroadcastsse
+    spec:
+      containers:
+      - name: chatbroadcastsse
+        image: 127.0.0.1:5001/chat_broadcast_sse:latest
+        ports:
+        - containerPort: 8081
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: chatbroadcastsse-service
+spec:
+  selector:
+    app: chatbroadcastsse
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 8081

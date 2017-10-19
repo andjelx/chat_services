@@ -32,16 +32,5 @@ spec:
   type: NodePort
   ports:
   - protocol: TCP
-    port: 8089
+    port: 8080
     targetPort: 8080
-
----
-
-kind: Ingress
-apiVersion: extensions/v1beta1
-metadata:
-  name: chatservice-ingress
-spec:
-  backend:
-    serviceName: chatservice-service
-    servicePort: 80
