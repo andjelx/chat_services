@@ -1,21 +1,47 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: chat-service-deployment
+  name: chatservice-deployment
   labels:
-    app: chat-service
+    app: chatservice
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: chat-service
+      app: chatservice
   template:
     metadata:
       labels:
-        app: chat-service
+        app: chatservice
     spec:
       containers:
-      - name: chat-service
-        image: chat_service:latest
+      - name: chatservice
+        image: 127.0.0.1:5001/chat_service:latest
         ports:
         - containerPort: 8080
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: chatservice-service
+spec:
+  selector:
+    app: chatservice
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 8089
+    targetPort: 8080
+
+---
+
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: chatservice-ingress
+spec:
+  backend:
+    serviceName: chatservice-service
+    servicePort: 80
