@@ -14,10 +14,13 @@ node {
        dir('chat_broadcast_sse') {
          sh "'${mvnHome}/bin/mvn' clean package"
          sh "docker build . -t ${imageName} && docker tag ${imageName}:latest ${dockerRepo}/${imageName}:latest"
-         sh "curl ${dockerRepo}; sleep 3" // Hack for repo initialisation
-         sh "docker push ${dockerRepo}/${imageName}:latest"
         }
-      }
+    }
+
+  stage('Docker Push') {
+    sh "curl ${dockerRepo}; sleep 3" // Hack for repo initialisation
+    sh "docker push ${dockerRepo}/${imageName}:latest"
+  }
 
    stage('Results') {
       junit '**/target/surefire-reports/*.xml'
