@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: messagequeue-deployment
+  labels:
+    app: messagequeue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: messagequeue
+  template:
+    metadata:
+      labels:
+        app: messagequeue
+    spec:
+      containers:
+      - name: messagequeue
+        image: 127.0.0.1:5001/message_queue:latest
+        ports:
+        - containerPort: 61613
+        - containerPort: 61614
+        - containerPort: 61623
+        - containerPort: 61624
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: messagequeue-service
+spec:
+  selector:
+    app: messagequeue
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 61613
+    targetPort: 61613
