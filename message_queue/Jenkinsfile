@@ -1,0 +1,21 @@
+dockerRepo = '127.0.0.1:5001'
+imageName = 'message_queue'
+
+javaPackage = "https://www.dropbox.com/s/31tbep41nroknfd/jdk-8u151-linux-x64.tar.gz?dl=0"
+appoloPackage="http://apache.mirror.anlx.net/activemq/activemq-apollo/1.7.1/apache-apollo-1.7.1-unix-distro.tar.gz"
+
+node {
+   stage('Preparation') { 
+      git 'https://github.com/andjelx/chat_services.git'
+   }
+
+   stage('Build') {
+       dir('message_queue') {
+         sh "curl -q -o jdk-8u151-linux-x64.tar.gz -L ${javaPackage}"
+         sh "curl -q -O -L ${appoloPackage}"
+         sh "packer build build.json"
+         sh "curl ${dockerRepo}; sleep 3" // Hack for repo initialisation
+         sh "docker push ${dockerRepo}/${imageName}:latest"
+        }
+      }
+}

@@ -1,5 +1,5 @@
-
-
 *.class
 chat_service/target/*
 chat_broadcast_sse/target/*
+
+*/*.tar.gz

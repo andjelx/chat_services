@@ -17,6 +17,8 @@
 - name: Convert the pkcs12 file to a java keystore
   become: true
   command: keytool -importkeystore -deststorepass {{ keystore_store_password }} -destkeypass  {{ keystore_password }} -destkeystore {{ keystore_path }} -srckeystore {{ssl_certs_path}}/{{ ssl_certs_common_name }}.p12 -srcstoretype PKCS12 -srcstorepass tmp -alias {{ ssl_certs_common_name }}
+  environment:
+    PATH: "{{ oracle_java_home }}/bin:{{ ansible_env.PATH }}"
 
 - name: delete the pkcs12 file
   become: true

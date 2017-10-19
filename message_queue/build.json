@@ -1,0 +1,59 @@
+{
+    "variables": {
+      "config_file": "vars/default.yml",
+      "tmp_dir": "/tmp"
+    },
+  
+    "builders":[
+      {
+        "type": "docker",
+        "image": "williamyeh/ansible:ubuntu16.04-onbuild",
+        "commit": true,
+        "changes": [
+          "ENTRYPOINT /entrypoint.sh"
+        ]
+      }
+    ],
+    "provisioners":[
+      {
+        "type": "shell",
+        "inline": [
+          "mkdir -p {{user `tmp_dir`}}"
+        ]
+      },
+      {
+        "type": "file",
+        "source": "jdk-8u151-linux-x64.tar.gz",
+        "destination": "/tmp/jdk-8u151-linux-x64.tar.gz"
+      },
+      {
+        "type": "file",
+        "source": "apache-apollo-1.7.1-unix-distro.tar.gz",
+        "destination": "/tmp/apache-apollo-1.7.1-unix-distro.tar.gz"
+      },
+      {
+        "type": "file",
+        "source": "./",
+        "destination": "{{user `tmp_dir`}}/ansible/"
+      }
+      ,
+      {
+        "type": "ansible-local",
+        "staging_directory": "{{user `tmp_dir`}}/ansible",
+        "playbook_file": "install.yml",
+        "playbook_dir": "{{user `tmp_dir`}}",
+        "extra_arguments": [ "-i local/hosts.ini", "-s", "-vv"]
+      }
+  
+    ],
+  
+    "post-processors": [
+      [
+        {
+          "type": "docker-tag",
+          "repository": "127.0.0.1:5001/message_queue",
+          "tag": "latest"
+        }
+      ]
+    ]
+  }

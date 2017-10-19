@@ -7,3 +7,4 @@ oracle_java_state: latest
 oracle_java_set_as_default: yes
 
 java_package: "jdk-8u151-linux-x64.tar.gz"
+jave_package_url: "https://www.dropbox.com/s/31tbep41nroknfd/jdk-8u151-linux-x64.tar.gz?dl=0"
