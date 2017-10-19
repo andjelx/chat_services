@@ -7,6 +7,15 @@
     <version>1.0</version>
     <name>ChatBroadcastSSE</name>
     <url>http://maven.apache.org</url>
+
+ <parent>
+   		<groupId>org.springframework.boot</groupId>
+   		<artifactId>spring-boot-starter-parent</artifactId>
+   		<version>1.1.8.RELEASE</version>
+   	</parent>
+
+
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -14,6 +23,19 @@
             <version>4.7</version>
             <scope>test</scope>
         </dependency>
+    <dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>3.1.0</version>
+<scope>provided</scope>
+</dependency>
+
+<dependency>
+  <groupId>org.eclipse.jetty</groupId>
+  <artifactId>jetty-util</artifactId>
+ <version>9.4.7.v20170914</version>
+</dependency>
+
 
         <dependency>
             <groupId>org.mockito</groupId>
@@ -45,6 +67,11 @@
         </dependency>
 
     </dependencies>
+
+    <properties>
+   		<start-class>de.affinitas.chat.service.ChatBroadcastSSEService</start-class>
+   	</properties>
+
     <build>
         <plugins>
             <plugin>
@@ -55,6 +82,39 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+<plugin>
+   				<groupId>org.springframework.boot</groupId>
+   				<artifactId>spring-boot-maven-plugin</artifactId>
+   			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>de.affinitas.chat.service.ChatBroadcastSSEService</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
+   	<repositories>
+   		<repository>
+   			<id>spring-releases</id>
+   			<name>Spring Releases</name>
+   			<url>http://repo.spring.io/libs-release</url>
+   		</repository>
+   	</repositories>
+   	<pluginRepositories>
+   		<pluginRepository>
+   			<id>spring-releases</id>
+   			<name>Spring Releases</name>
+   			<url>http://repo.spring.io/libs-release</url>
+   		</pluginRepository>
+   	</pluginRepositories>
+
 </project>
