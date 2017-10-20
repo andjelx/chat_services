@@ -3,14 +3,14 @@ package de.affinitas.chat.service;
 import org.springframework.stereotype.*
 import org.springframework.beans.factory.annotation.*
 
-@Component
 public class ChatConfig {
 
-    private String mqttRootTopic;  
-    
+    private String mqttRootTopic;      
     @Value("${mqttbroker.url}")
     private String mqttBrokerUrl;
+//    @Value("${mqttbroker.user}")
     private String mqttUser;
+//    @Value("${mqttbroker.password}")
     private String mqttPassword;
 
     public ChatConfig() {
