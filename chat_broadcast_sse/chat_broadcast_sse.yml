@@ -19,7 +19,16 @@ spec:
         image: 127.0.0.1:5001/chat_broadcast_sse:latest
         ports:
         - containerPort: 8081
-
+        readinessProbe:
+          tcpSocket:
+            port: 8081
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 8081
+          initialDelaySeconds: 15
+          periodSeconds: 20
 ---
 
 kind: Service

@@ -20,7 +20,16 @@ spec:
         ports:
         - containerPort: 61613
         - containerPort: 61614
-
+        readinessProbe:
+          tcpSocket:
+            port: 61613
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 61613
+          initialDelaySeconds: 15
+          periodSeconds: 20
 ---
 
 kind: Service
