@@ -19,10 +19,7 @@ spec:
         image: 127.0.0.1:5001/chat_service:latest
         env:
           - name: MQTTHOST
-            valueFrom:
-              fieldRef:
-                containerName: messagequeue
-                fieldPath: status.podIP
+            value: '172.0.0.0:61613'
         ports:
         - containerPort: 8080
         readinessProbe:
