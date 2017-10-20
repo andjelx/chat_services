@@ -8,7 +8,7 @@ public class ChatConfig {
 
     private String mqttRootTopic;  
     
-    @Value("${mqttBrokerUrl}")
+    @Value("${mqttbroker.url}")
     private String mqttBrokerUrl;
     private String mqttUser;
     private String mqttPassword;
