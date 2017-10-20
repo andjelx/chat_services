@@ -1,8 +1,12 @@
 package de.affinitas.chat.service;
 
+import org.springframework.stereotype.*
+import org.springframework.beans.factory.annotation.*
+
 public class ChatConfig {
 
     private String mqttRootTopic;  
+    
     @Value("${mqttBrokerUrl}")
     private String mqttBrokerUrl;
     private String mqttUser;
