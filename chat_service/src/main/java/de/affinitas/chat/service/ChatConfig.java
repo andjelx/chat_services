@@ -3,6 +3,7 @@ package de.affinitas.chat.service;
 import org.springframework.stereotype.*
 import org.springframework.beans.factory.annotation.*
 
+@Component
 public class ChatConfig {
 
     private String mqttRootTopic;  
