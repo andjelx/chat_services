@@ -6,7 +6,7 @@ node {
    stage('Preparation') { 
       git 'https://github.com/andjelx/chat_services.git'
       mvnHome = tool 'maven'
-      env.JAVA_HOME="${tool 'jdk-8u101'}"
+      env.JAVA_HOME="${tool 'jdk-8u151'}"
       env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
    }
 
