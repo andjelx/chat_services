@@ -16,7 +16,7 @@ I do believe this can be better done through spring parameters.
 
 Some thoughts
 ===
-* Setup app monitoring can be done with Prometheus JVM
+* Setup app monitoring can be done with Prometheus JMX Exporter
 * Rewrite ansible code to fit better 
 * Update Java code to fully support parametrization 
 
