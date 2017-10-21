@@ -1,4 +1,4 @@
-FROM java:oracle-java8
+FROM openjdk:8-jdk-alpine
 VOLUME /tmp
 ADD target/ChatBroadcastSSE-1.0.jar app.jar
 ENV JAVA_OPTS=""
